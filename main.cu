@@ -139,8 +139,8 @@ void cleanup(const string& benchmark, T *array1, T *array2, T *array3, T *array4
 template <typename T>
 void runBenchmark(const string& benchmark, size_t size, int gridSize, int blockSize) {
 
-	int warmups = 3;
-	int iters = 10;
+	int warmups = WARMUPS;
+	int iters = ITERS;
 	double avg = 0.0;
 
 	T scalar = static_cast<T>(2);
@@ -156,7 +156,7 @@ void runBenchmark(const string& benchmark, size_t size, int gridSize, int blockS
 	int device;
 	cudaGetDevice(&device);
 	cudaGetDeviceProperties(&prop, device);
-	double bandwidth = (prop.memoryClockRate * prop.memoryBusWidth * 2.0) / (8.0 * 1024 * 1024);
+	double bandwidth = (prop.memoryClockRate * prop.memoryBusWidth * 2.0) / (8.0 * 1e6);
 	cout << "Theoretical GPU bandwidth: " << bandwidth << " GB/s.\n";
 	int nb_arrays = getNbArrays(benchmark);
 	double total_load = mem * nb_arrays; 
