@@ -6,6 +6,7 @@ of simple GPU memory-bound kernels. It currently runs on NVIDIA GPUs, using the 
 ## How to compile
 
 Just run `make`. You need the cuda toolkit to compile.
+Number of iterations and warmups can be adjusted with `make it=100 wu=5` for example.
 
 ## How to use
 
