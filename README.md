@@ -22,7 +22,7 @@ By default, the number of threads will be equal to the array size and the blocks
 - initArray: init a 1D array to a constant value.
 - copyArray: copy the content of a 1D array to another.
 - constScaleArray: multiply a 1D array by a constant value.
-- scaleArray: multiply two arrays element-wise.
+- scaleArray: multiply a 1D array by non-constant values (element-wise).
 - addArray: perform element-wise addition of two arrays and store the result into a third.
 - multArray: perform element-wise multiplication of two arrays and store the result into a third.
 - axpy: axpy kernel (y[i] += alpha * x[i])
