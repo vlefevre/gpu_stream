@@ -164,11 +164,11 @@ void runBenchmark(const string& benchmark, size_t size, int gridSize, int blockS
 	int device;
 	cudaGetDevice(&device);
 	cudaGetDeviceProperties(&prop, device);
-	double bandwidth = (prop.memoryClockRate * prop.memoryBusWidth * 2.0) / (8.0 * 1e6);
+	double bandwidth = (2.0 * prop.memoryClockRate * prop.memoryBusWidth) / (8.0 * 1e6);
 	cout << "Theoretical GPU bandwidth: " << bandwidth << " GB/s.\n";
 	int nb_arrays = getNbArrays(benchmark);
 	double total_load = mem * nb_arrays; 
-	cout << "Estimated runtime: " << (total_load*1024.) / bandwidth << " µs." << endl;
+	cout << "Estimated runtime: " << (total_load*1024.) / bandwidth << " µs." << endl; //kB divided by GB/s equals microseconds
 
 	initialize(benchmark, size, &array1, &array2, &array3, &array4);
 

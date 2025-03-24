@@ -5,8 +5,10 @@ of simple GPU memory-bound kernels. It currently runs on NVIDIA GPUs, using the 
 
 ## How to compile
 
-Just run `make`. You need the cuda toolkit to compile.
-Number of iterations and warmups can be adjusted with `make it=100 wu=5` for example.
+Just run `make`. You need the cuda toolkit to compile. Architecture code can be specified with `sm=XY`, default to 80 (Ampere).
+Number of iterations and warmups can be adjusted with `it` and `wu`.
+
+For example, `make sm=90 it=100 wu=5` will compile the application for Hopper architecture, using 5 warmup rounds and averaging the execution time on 100 iterations.
 
 ## How to use
 
