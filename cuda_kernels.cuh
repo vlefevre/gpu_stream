@@ -62,6 +62,15 @@ __global__ void axpy(size_t N, T *x, T*y, T alpha)
 }
 
 template <typename T>
+__global__ void triad(size_t N, T *x, T *y, T *z, T alpha)
+{
+	for (size_t tid=threadIdx.x + blockIdx.x * blockDim.x; tid<N; tid += gridDim.x * blockDim.x)
+	{
+		z[tid] = y[tid] + x[tid]*alpha;
+	}
+}
+
+template <typename T>
 __global__ void custom1write2read(size_t N, T *w, T *r1, T *r2)
 {
 	for (size_t tid=threadIdx.x + blockIdx.x * blockDim.x; tid<N; tid += gridDim.x * blockDim.x)

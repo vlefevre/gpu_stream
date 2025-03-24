@@ -27,6 +27,7 @@ By default, the number of threads will be equal to the array size and the blocks
 - addArray: perform element-wise addition of two arrays and store the result into a third.
 - multArray: perform element-wise multiplication of two arrays and store the result into a third.
 - axpy: axpy kernel (y[i] += alpha * x[i])
+- triad: Triad operation from STREAM (z[i] = y[i] + alpha * x[i])
 - 1write2read: element-wise operation with 1 array as input/output and 2 arrays as input.
 - 1write3read: element-wise operation with 1 array as input/output and 3 arrays as input.
 

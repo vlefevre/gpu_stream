@@ -71,6 +71,8 @@ int getNbArrays(const string& benchmark)
 		return 3;
 	} else if (benchmark == "axpy") {
 		return 3;
+	} else if (benchmark == "triad") {
+		return 3;
 	} else if (benchmark == "1write2read") {
 		return 4;
 	} else if (benchmark == "1write3read") {
@@ -98,6 +100,9 @@ void initialize(const string& benchmark, size_t size, T **array1, T **array2, T 
 		createArray(array3, size);
 	} else if (benchmark == "axpy") {
 		createArray(array2, size);
+	} else if (benchmark == "triad") {
+		createArray(array2, size);
+		createArray(array3, size);
 	} else if (benchmark == "1write2read") {
 		createArray(array2, size);
 		createArray(array3, size);
@@ -125,6 +130,9 @@ void cleanup(const string& benchmark, T *array1, T *array2, T *array3, T *array4
 		deleteArray(array3);
 	} else if (benchmark == "axpy") {
 		deleteArray(array2);
+	} else if (benchmark == "axpy") {
+		deleteArray(array2);
+		deleteArray(array3);
 	} else if (benchmark == "1write2read") {
 		deleteArray(array2);
 		deleteArray(array3);
@@ -137,8 +145,8 @@ void cleanup(const string& benchmark, T *array1, T *array2, T *array3, T *array4
 
 // Function template to run benchmarks
 template <typename T>
-void runBenchmark(const string& benchmark, size_t size, int gridSize, int blockSize) {
-
+void runBenchmark(const string& benchmark, size_t size, int gridSize, int blockSize)
+{
 	int warmups = WARMUPS;
 	int iters = ITERS;
 	double avg = 0.0;
@@ -182,6 +190,8 @@ void runBenchmark(const string& benchmark, size_t size, int gridSize, int blockS
 			multArray<<<gridSize, blockSize>>>(size, array1, array2, array3);
 		} else if (benchmark == "axpy") {
 			axpy<<<gridSize, blockSize>>>(size, array1, array2, scalar);
+		} else if (benchmark == "triad") {
+			triad<<<gridSize, blockSize>>>(size, array1, array2, array3, scalar);
 		} else if (benchmark == "1write2read") {
 			custom1write2read<<<gridSize, blockSize>>>(size, array1, array2, array3);
 		} else if (benchmark == "1write3read") {
