@@ -13,7 +13,16 @@ __global__ void copyArray(size_t N, T *dst, T* src)
 	for (size_t tid=threadIdx.x + blockIdx.x * blockDim.x; tid<N; tid += gridDim.x * blockDim.x)
 	{
 		dst[tid] = src[tid];
-	}	
+	}
+}
+
+template <typename T>
+__global__ void reverseArray(size_t N, T *dst, T* src)
+{
+	for (size_t tid=threadIdx.x + blockIdx.x * blockDim.x; tid<N; tid += gridDim.x * blockDim.x)
+	{
+		dst[tid] = -src[tid];
+	}
 }
 
 template <typename T>

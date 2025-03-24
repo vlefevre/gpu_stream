@@ -59,6 +59,8 @@ int getNbArrays(const string& benchmark)
 {
 	if (benchmark == "initArray") {
 		return 1;
+	} else if (benchmark == "reverseArray") {
+		return 2;
 	} else if (benchmark == "copyArray") {
 		return 2;
 	} else if (benchmark == "constScaleArray") {
@@ -90,6 +92,8 @@ void initialize(const string& benchmark, size_t size, T **array1, T **array2, T 
 	createArray(array1, size);
 	if (benchmark == "copyArray") {
 		createArray(array2, size);
+	} else if (benchmark == "reverseArray") {
+		createArray(array2, size);
 	} else if (benchmark == "scaleArray") {
 		createArray(array2, size);
 	} else if (benchmark == "addArray") {
@@ -116,9 +120,11 @@ void initialize(const string& benchmark, size_t size, T **array1, T **array2, T 
 template <typename T>
 void cleanup(const string& benchmark, T *array1, T *array2, T *array3, T *array4)
 {
-	cout << "Cleaning meory..." << endl;
+	cout << "Cleaning memory..." << endl;
 	deleteArray(array1);
 	if (benchmark == "copyArray") {
+		deleteArray(array2);
+	} else if (benchmark == "reverseArray") {
 		deleteArray(array2);
 	} else if (benchmark == "scaleArray") {
 		deleteArray(array2);
