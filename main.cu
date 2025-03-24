@@ -186,6 +186,8 @@ void runBenchmark(const string& benchmark, size_t size, int gridSize, int blockS
 			initArray<<<gridSize, blockSize>>>(size, array1, scalar);
 		} else if (benchmark == "copyArray") {
 			copyArray<<<gridSize, blockSize>>>(size, array1, array2);
+		} else if (benchmark == "reverseArray") {
+			reverseArray<<<gridSize, blockSize>>>(size, array1, array2);
 		} else if (benchmark == "constScaleArray") {
 			constScaleArray<<<gridSize, blockSize>>>(size, array1, scalar);
 		} else if (benchmark == "scaleArray") {
